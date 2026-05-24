@@ -7,7 +7,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://billflow-saas-ecru.vercel.app/"],
+    allow_origins=["https://billflow-saas-re73aoy01-avunuri-akshith-projects.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
