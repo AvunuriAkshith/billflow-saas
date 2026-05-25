@@ -44,27 +44,72 @@ const Plans = () => {
     amount,
     planName
   ) => {
-        if (amount === 0) {
 
-  const user = JSON.parse(
-  localStorage.getItem('user')
-)
+    // FREE PLAN
 
-await API.post(
-  '/payment/verify-payment',
-  {
-    razorpay_order_id: 'FREE_PLAN',
-    razorpay_payment_id: 'FREE_PLAN',
-    razorpay_signature: 'FREE_PLAN',
-    email: user.email,
-    plan: planName,
-  }
-)
+    if (amount === 0) {
 
-alert('Free Plan Activated')
+      try {
 
-  return
-}
+        const user = JSON.parse(
+          localStorage.getItem('user')
+        )
+
+        await API.post(
+          '/payment/verify-payment',
+          {
+            razorpay_order_id:
+              'FREE_PLAN',
+
+            razorpay_payment_id:
+              'FREE_PLAN',
+
+            razorpay_signature:
+              'FREE_PLAN',
+
+            email: user.email,
+
+            plan: planName,
+          }
+        )
+
+        // UPDATE LOCAL STORAGE
+
+        const updatedUser = {
+
+          ...user,
+
+          subscriptionStatus:
+            'Active',
+
+          subscriptionPlan:
+            planName,
+        }
+
+        localStorage.setItem(
+          'user',
+          JSON.stringify(updatedUser)
+        )
+
+        alert('Free Plan Activated')
+
+        window.location.href =
+          '/dashboard'
+
+      } catch (error) {
+
+        console.log(error)
+
+        alert(
+          'Free Plan Activation Failed'
+        )
+      }
+
+      return
+    }
+
+    // PAID PLANS
+
     try {
 
       const response = await API.post(
@@ -76,7 +121,8 @@ alert('Free Plan Activated')
 
       const options = {
 
-        key: 'rzp_test_SnC95LVCz8ytCf',
+        key:
+          'rzp_test_SnC95LVCz8ytCf',
 
         amount: order.amount,
 
@@ -89,57 +135,74 @@ alert('Free Plan Activated')
 
         order_id: order.id,
 
-        handler: async function (response) {
+        handler: async function (
+          response
+        ) {
 
-  try {
+          try {
 
-    const user = JSON.parse(
-      localStorage.getItem('user')
-    )
+            const user = JSON.parse(
+              localStorage.getItem('user')
+            )
 
-    await API.post(
-      '/payment/verify-payment',
-      {
-        razorpay_order_id:
-          response.razorpay_order_id,
+            // VERIFY PAYMENT
 
-        razorpay_payment_id:
-          response.razorpay_payment_id,
+            await API.post(
+              '/payment/verify-payment',
+              {
+                razorpay_order_id:
+                  response.razorpay_order_id,
 
-        razorpay_signature:
-          response.razorpay_signature,
+                razorpay_payment_id:
+                  response.razorpay_payment_id,
 
-        email: user.email,
+                razorpay_signature:
+                  response.razorpay_signature,
 
-        plan: plan.name,
-      }
-    )
+                email: user.email,
 
-    // UPDATE LOCAL USER
+                plan: planName,
+              }
+            )
 
-    const updatedUser = {
-      ...user,
-      subscriptionStatus: 'Active',
-      subscriptionPlan: plan.name,
-    }
+            // UPDATE LOCAL USER
 
-    localStorage.setItem(
-      'user',
-      JSON.stringify(updatedUser)
-    )
+            const updatedUser = {
 
-    alert('Payment Successful')
+              ...user,
 
-    window.location.href =
-      '/dashboard'
+              subscriptionStatus:
+                'Active',
 
-  } catch (error) {
+              subscriptionPlan:
+                planName,
+            }
 
-    console.log(error)
+            localStorage.setItem(
+              'user',
+              JSON.stringify(
+                updatedUser
+              )
+            )
 
-    alert('Payment Verification Failed')
-  }
-},
+            alert(
+              'Payment Successful'
+            )
+
+            window.location.href =
+              '/dashboard'
+
+          } catch (error) {
+
+            console.log(error)
+
+            alert(
+              error.response?.data
+                ?.detail ||
+              'Payment Verification Failed'
+            )
+          }
+        },
 
         theme: {
           color: '#2563eb',
@@ -178,7 +241,7 @@ alert('Free Plan Activated')
 
       </div>
 
-      {/* Pricing Cards */}
+      {/* Cards */}
 
       <div className="grid md:grid-cols-3 gap-10 mt-20 max-w-7xl mx-auto">
 
@@ -189,7 +252,7 @@ alert('Free Plan Activated')
             className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl overflow-hidden hover:scale-105 transition duration-300"
           >
 
-            {/* Top Gradient */}
+            {/* Gradient */}
 
             <div
               className={`bg-gradient-to-r ${plan.color} p-8 text-white`}
@@ -243,12 +306,15 @@ alert('Free Plan Activated')
                         'Enterprise'
                       ? 1999
                       : 0,
+
                     plan.name
                   )
                 }
                 className={`w-full mt-10 bg-gradient-to-r ${plan.color} text-white py-4 rounded-2xl text-lg font-semibold hover:opacity-90 transition`}
               >
+
                 Choose Plan
+
               </button>
 
             </div>
@@ -259,7 +325,7 @@ alert('Free Plan Activated')
 
       </div>
 
-      {/* Bottom Section */}
+      {/* Bottom */}
 
       <div className="mt-24 text-center">
 
@@ -269,9 +335,9 @@ alert('Free Plan Activated')
 
         <p className="text-gray-500 dark:text-gray-300 mt-6 max-w-3xl mx-auto text-lg">
           BillFlow helps businesses manage
-          subscriptions, invoices, analytics,
-          and payments with a modern SaaS
-          experience powered by Razorpay.
+          subscriptions, invoices,
+          analytics, and payments with
+          a modern SaaS experience.
         </p>
 
       </div>
