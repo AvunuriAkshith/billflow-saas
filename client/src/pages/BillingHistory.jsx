@@ -252,7 +252,7 @@ const BillingHistory = () => {
                     <td className="p-4">
 
                       <a
-                        href={`http://127.0.0.1:8000/api/payment/invoice/${payment.payment_id}`}
+                        href={`https://billflow-saas-rm1h.onrender.com/api/payment/invoice/${payment.payment_id}`}
                         target="_blank"
                         rel="noreferrer"
                         className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
