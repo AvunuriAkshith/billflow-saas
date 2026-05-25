@@ -52,45 +52,53 @@ def login(user: LoginUser):
     })
 
     if not existing_user:
+
         raise HTTPException(
             status_code=400,
-            detail="Invalid email"
+            detail="Invalid Email"
         )
 
-    is_password_correct = verify_password(
+    if not verify_password(
         user.password,
         existing_user["password"]
-    )
+    ):
 
-    if not is_password_correct:
         raise HTTPException(
             status_code=400,
-            detail="Invalid password"
+            detail="Invalid Password"
         )
 
-    token = create_access_token({
-        "user_id": str(existing_user["_id"]),
-        "email": existing_user["email"],
-        "role": existing_user["role"]
+    access_token = create_access_token({
+        "sub": existing_user["email"]
     })
 
     return {
-        "access_token": token,
+
+        "access_token": access_token,
+
         "user": {
-    "name": user["name"],
-    "email": user["email"],
-    "role": user["role"],
-    "subscriptionStatus":
-        user.get(
-            "subscriptionStatus",
-            "Inactive"
-        ),
-    "subscriptionPlan":
-        user.get(
-            "subscriptionPlan",
-            "Free"
-        )
-}
+
+            "name":
+                existing_user["name"],
+
+            "email":
+                existing_user["email"],
+
+            "role":
+                existing_user["role"],
+
+            "subscriptionStatus":
+                existing_user.get(
+                    "subscriptionStatus",
+                    "Inactive"
+                ),
+
+            "subscriptionPlan":
+                existing_user.get(
+                    "subscriptionPlan",
+                    "Free"
+                )
+        }
     }
 85# Forgot Password
 @router.post("/forgot-password")
