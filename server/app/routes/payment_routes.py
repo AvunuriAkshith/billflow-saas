@@ -180,32 +180,48 @@ def generate_invoice(payment_id: str):
 @router.get("/admin/analytics")
 def admin_analytics():
 
-    total_users = users_collection.count_documents({})
-
-    active_subscriptions = (
-        users_collection.count_documents({
-            "subscriptionStatus": "Active"
-        })
+    users = list(
+        users_collection.find(
+            {},
+            {"_id": 0}
+        )
     )
 
     payments = list(
-        payments_collection.find({})
+        payments_collection.find(
+            {},
+            {"_id": 0}
+        )
     )
 
     total_revenue = 0
 
     for payment in payments:
 
-        if payment["plan"] == "Pro":
+        if payment.get("plan") == "Pro":
             total_revenue += 499
 
-        elif payment["plan"] == "Enterprise":
+        elif payment.get("plan") == "Enterprise":
             total_revenue += 1999
 
+    active_subscriptions = len([
+        user for user in users
+        if user.get(
+            "subscriptionStatus"
+        ) == "Active"
+    ])
+
     return {
-        "total_users": total_users,
+
+        "total_users": len(users),
+
         "active_subscriptions":
             active_subscriptions,
+
         "total_revenue":
-            total_revenue
+            total_revenue,
+
+        "users": users,
+
+        "payments": payments,
     }

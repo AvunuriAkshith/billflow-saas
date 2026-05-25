@@ -116,15 +116,15 @@ const AdminDashboard = () => {
         {/* Revenue Card */}
 
         <div
-          onClick={() => {
+            onClick={() => {
 
-            setSelectedData(payments)
+    setSelectedData(payments)
 
-            setSelectedTitle(
-              'Revenue Payments'
-            )
+    setSelectedTitle(
+      'Revenue Transactions'
+    )
 
-          }}
+  }}
           className="cursor-pointer bg-gradient-to-r from-blue-500 to-blue-700 text-white p-8 rounded-3xl shadow-xl hover:scale-105 transition"
         >
 
@@ -141,15 +141,15 @@ const AdminDashboard = () => {
         {/* Users Card */}
 
         <div
-          onClick={() => {
+            onClick={() => {
 
-            setSelectedData(users)
+    setSelectedData(users)
 
-            setSelectedTitle(
-              'All Users'
-            )
+    setSelectedTitle(
+      'Registered Users'
+    )
 
-          }}
+  }}
           className="cursor-pointer bg-gradient-to-r from-purple-500 to-purple-700 text-white p-8 rounded-3xl shadow-xl hover:scale-105 transition"
         >
 
@@ -166,27 +166,27 @@ const AdminDashboard = () => {
         {/* Active Subscription Card */}
 
         <div
-          onClick={() => {
+            onClick={() => {
 
-            const activeUsers =
-              users.filter(
-                (user) =>
-                  user.subscriptionStatus ===
-                  'Active'
-              )
+    const activeUsers =
+      users.filter(
+        (user) =>
+          user.subscriptionStatus ===
+          'Active'
+      )
 
-            setSelectedData(activeUsers)
+    setSelectedData(activeUsers)
 
-            setSelectedTitle(
-              'Active Subscriptions'
-            )
+    setSelectedTitle(
+      'Premium Users'
+    )
 
-          }}
+  }}
           className="cursor-pointer bg-gradient-to-r from-green-500 to-green-700 text-white p-8 rounded-3xl shadow-xl hover:scale-105 transition"
         >
 
           <p className="text-lg opacity-80">
-            Active Subscriptions
+            Premium Users 
           </p>
 
           <h2 className="text-5xl font-bold mt-4">

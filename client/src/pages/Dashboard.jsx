@@ -106,8 +106,13 @@ const Dashboard = () => {
           </p>
 
           <h2 className="text-4xl font-bold mt-4">
-            Active
-          </h2>
+
+  {
+    user?.subscriptionStatus ||
+    'Inactive'
+  }
+
+</h2>
 
         </div>
 
