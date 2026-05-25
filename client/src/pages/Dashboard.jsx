@@ -102,15 +102,14 @@ const Dashboard = () => {
         <div className="bg-gradient-to-r from-green-500 to-green-700 text-white p-8 rounded-3xl shadow-2xl">
 
           <p className="text-lg opacity-80">
-            Subscription Status
+           Current Plan
           </p>
 
           <h2 className="text-4xl font-bold mt-4">
 
-  {
-    user?.subscriptionStatus ||
-    'Inactive'
-  }
+ {
+  user?.subscriptionPlan || 'Free'
+}
 
 </h2>
 

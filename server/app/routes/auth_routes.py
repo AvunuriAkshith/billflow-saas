@@ -77,10 +77,20 @@ def login(user: LoginUser):
     return {
         "access_token": token,
         "user": {
-            "name": existing_user["name"],
-            "email": existing_user["email"],
-            "role": existing_user["role"]
-        }
+    "name": user["name"],
+    "email": user["email"],
+    "role": user["role"],
+    "subscriptionStatus":
+        user.get(
+            "subscriptionStatus",
+            "Inactive"
+        ),
+    "subscriptionPlan":
+        user.get(
+            "subscriptionPlan",
+            "Free"
+        )
+}
     }
 85# Forgot Password
 @router.post("/forgot-password")
