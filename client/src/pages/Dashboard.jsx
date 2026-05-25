@@ -52,12 +52,16 @@ const Dashboard = () => {
 
         <div className="flex gap-4">
 
-          <button
-            onClick={() => navigate('/admin')}
-            className="bg-gradient-to-r from-purple-500 to-purple-700 text-white px-6 py-3 rounded-2xl shadow-lg hover:scale-105 transition"
-          >
-            Admin Dashboard
-          </button>
+          {user?.role === 'admin' && (
+
+  <button
+    onClick={() => navigate('/admin')}
+    className="bg-purple-600 text-white px-6 py-3 rounded-xl hover:bg-purple-700"
+  >
+    Admin Dashboard
+  </button>
+
+)}
 
           <button
             onClick={toggleTheme}

@@ -25,6 +25,18 @@ const AdminDashboard = () => {
   const [analytics, setAnalytics] =
     useState({})
 
+  const [users, setUsers] =
+    useState([])
+
+  const [payments, setPayments] =
+    useState([])
+
+  const [selectedData, setSelectedData] =
+    useState([])
+
+  const [selectedTitle, setSelectedTitle] =
+    useState('')
+
   useEffect(() => {
 
     fetchAnalytics()
@@ -40,6 +52,14 @@ const AdminDashboard = () => {
       )
 
       setAnalytics(response.data)
+
+      setUsers(
+        response.data.users || []
+      )
+
+      setPayments(
+        response.data.payments || []
+      )
 
     } catch (error) {
 
@@ -71,6 +91,8 @@ const AdminDashboard = () => {
 
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-10 transition">
 
+      {/* Header */}
+
       <div className="flex items-center justify-between">
 
         <div>
@@ -91,31 +113,77 @@ const AdminDashboard = () => {
 
       <div className="grid md:grid-cols-3 gap-8 mt-10">
 
-        <div className="bg-gradient-to-r from-blue-500 to-blue-700 text-white p-8 rounded-3xl shadow-xl">
+        {/* Revenue Card */}
+
+        <div
+          onClick={() => {
+
+            setSelectedData(payments)
+
+            setSelectedTitle(
+              'Revenue Payments'
+            )
+
+          }}
+          className="cursor-pointer bg-gradient-to-r from-blue-500 to-blue-700 text-white p-8 rounded-3xl shadow-xl hover:scale-105 transition"
+        >
 
           <p className="text-lg opacity-80">
             Total Revenue
           </p>
 
           <h2 className="text-5xl font-bold mt-4">
-            ₹{analytics.total_revenue}
+            ₹{analytics.total_revenue || 0}
           </h2>
 
         </div>
 
-        <div className="bg-gradient-to-r from-purple-500 to-purple-700 text-white p-8 rounded-3xl shadow-xl">
+        {/* Users Card */}
+
+        <div
+          onClick={() => {
+
+            setSelectedData(users)
+
+            setSelectedTitle(
+              'All Users'
+            )
+
+          }}
+          className="cursor-pointer bg-gradient-to-r from-purple-500 to-purple-700 text-white p-8 rounded-3xl shadow-xl hover:scale-105 transition"
+        >
 
           <p className="text-lg opacity-80">
             Total Users
           </p>
 
           <h2 className="text-5xl font-bold mt-4">
-            {analytics.total_users}
+            {analytics.total_users || 0}
           </h2>
 
         </div>
 
-        <div className="bg-gradient-to-r from-green-500 to-green-700 text-white p-8 rounded-3xl shadow-xl">
+        {/* Active Subscription Card */}
+
+        <div
+          onClick={() => {
+
+            const activeUsers =
+              users.filter(
+                (user) =>
+                  user.subscriptionStatus ===
+                  'Active'
+              )
+
+            setSelectedData(activeUsers)
+
+            setSelectedTitle(
+              'Active Subscriptions'
+            )
+
+          }}
+          className="cursor-pointer bg-gradient-to-r from-green-500 to-green-700 text-white p-8 rounded-3xl shadow-xl hover:scale-105 transition"
+        >
 
           <p className="text-lg opacity-80">
             Active Subscriptions
@@ -123,7 +191,7 @@ const AdminDashboard = () => {
 
           <h2 className="text-5xl font-bold mt-4">
             {
-              analytics.active_subscriptions
+              analytics.active_subscriptions || 0
             }
           </h2>
 
@@ -215,6 +283,124 @@ const AdminDashboard = () => {
 
       </div>
 
+      {/* Detailed Information Section */}
+
+      <div className="mt-10 bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8">
+
+        <div className="flex items-center justify-between">
+
+          <h2 className="text-3xl font-bold text-gray-700 dark:text-white">
+            {selectedTitle || 'Detailed Information'}
+          </h2>
+
+          <span className="bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold">
+            {selectedData.length} Records
+          </span>
+
+        </div>
+
+        <div className="mt-8 space-y-4 max-h-[500px] overflow-y-auto">
+
+          {selectedData.length > 0 ? (
+
+            selectedData.map(
+              (item, index) => (
+
+                <div
+                  key={index}
+                  className="border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:shadow-lg transition"
+                >
+
+                  {/* User Info */}
+
+                  <div className="flex items-center justify-between">
+
+                    <div>
+
+                      <h3 className="text-xl font-bold text-black dark:text-white">
+                        {item.name || 'Unknown User'}
+                      </h3>
+
+                      <p className="text-gray-500 mt-1">
+                        {item.email}
+                      </p>
+
+                    </div>
+
+                    <div>
+
+                      <span className="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
+                        {
+                          item.status ||
+                          item.subscriptionStatus ||
+                          'Active'
+                        }
+                      </span>
+
+                    </div>
+
+                  </div>
+
+                  {/* Payment Details */}
+
+                  {(item.plan ||
+                    item.payment_id) && (
+
+                    <div className="mt-4 grid md:grid-cols-2 gap-4">
+
+                      <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-xl">
+
+                        <p className="text-gray-500 text-sm">
+                          Plan
+                        </p>
+
+                        <h4 className="text-lg font-bold text-black dark:text-white mt-1">
+                          {item.plan || 'N/A'}
+                        </h4>
+
+                      </div>
+
+                      <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-xl">
+
+                        <p className="text-gray-500 text-sm">
+                          Payment ID
+                        </p>
+
+                        <h4 className="text-lg font-bold text-black dark:text-white mt-1 break-all">
+                          {item.payment_id || 'N/A'}
+                        </h4>
+
+                      </div>
+
+                    </div>
+
+                  )}
+
+                </div>
+
+              )
+            )
+
+          ) : (
+
+            <div className="text-center py-20">
+
+              <h3 className="text-2xl font-bold text-gray-500">
+                No Data Selected
+              </h3>
+
+              <p className="text-gray-400 mt-3">
+                Click any analytics card above to view details
+              </p>
+
+            </div>
+
+          )}
+
+        </div>
+
+      </div>
+
       {/* Bottom Section */}
 
       <div className="grid md:grid-cols-2 gap-8 mt-10">
@@ -225,9 +411,11 @@ const AdminDashboard = () => {
             Growth Status
           </h2>
 
-          <p className="text-gray-500 dark:text-gray-300 mt-4">
+          <p className="text-gray-500 dark:text-gray-300 mt-4 leading-8">
             BillFlow is actively growing with
-            increasing subscriptions and revenue.
+            increasing subscriptions,
+            successful payments,
+            and strong platform engagement.
           </p>
 
         </div>
@@ -238,9 +426,39 @@ const AdminDashboard = () => {
             System Health
           </h2>
 
-          <p className="text-green-600 font-semibold mt-4">
-            ● All systems operational
-          </p>
+          <div className="mt-6 space-y-4">
+
+            <div className="flex items-center gap-3">
+
+              <div className="w-4 h-4 rounded-full bg-green-500"></div>
+
+              <p className="text-green-600 font-semibold">
+                Database Connected
+              </p>
+
+            </div>
+
+            <div className="flex items-center gap-3">
+
+              <div className="w-4 h-4 rounded-full bg-green-500"></div>
+
+              <p className="text-green-600 font-semibold">
+                Payment Gateway Active
+              </p>
+
+            </div>
+
+            <div className="flex items-center gap-3">
+
+              <div className="w-4 h-4 rounded-full bg-green-500"></div>
+
+              <p className="text-green-600 font-semibold">
+                APIs Operational
+              </p>
+
+            </div>
+
+          </div>
 
         </div>
 
