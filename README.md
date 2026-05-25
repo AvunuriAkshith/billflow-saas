@@ -92,19 +92,16 @@ Database  → MongoDB Atlas
 # 📸 Screenshots
 
 ## 🖥️ Dashboard
-- SaaS-style modern UI
-- Interactive cards
-- Dark mode support
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/5b97f2a8-866a-4e67-9f1f-5a5911595fd8" />
+
 
 ## 📈 Admin Analytics
-- Revenue charts
-- User analytics
-- Subscription tracking
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/2934f94e-697f-4a60-a17d-dbbe123e37b7" />
+
 
 ## 💳 Billing History
-- Invoice downloads
-- Payment tracking
-- Transaction analytics
+<img width="1919" height="1077" alt="image" src="https://github.com/user-attachments/assets/13ceeb2b-39f7-4b26-adf1-5078bc01fe29" />
+
 
 ---
 
