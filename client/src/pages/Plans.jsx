@@ -76,7 +76,7 @@ alert('Free Plan Activated')
 
       const options = {
 
-        key: 'YOUR_RAZORPAY_KEY_ID',
+        key: 'rzp_test_SnC95LVCz8ytCf',
 
         amount: order.amount,
 
