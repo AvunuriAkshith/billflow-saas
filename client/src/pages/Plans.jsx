@@ -89,47 +89,57 @@ alert('Free Plan Activated')
 
         order_id: order.id,
 
-        handler: async function (
-          response
-        ) {
+        handler: async function (response) {
 
-          try {
+  try {
 
-            const user = JSON.parse(
-              localStorage.getItem('user')
-            )
+    const user = JSON.parse(
+      localStorage.getItem('user')
+    )
 
-            await API.post(
-              '/payment/verify-payment',
-              {
-                razorpay_order_id:
-                  response.razorpay_order_id,
+    await API.post(
+      '/payment/verify-payment',
+      {
+        razorpay_order_id:
+          response.razorpay_order_id,
 
-                razorpay_payment_id:
-                  response.razorpay_payment_id,
+        razorpay_payment_id:
+          response.razorpay_payment_id,
 
-                razorpay_signature:
-                  response.razorpay_signature,
+        razorpay_signature:
+          response.razorpay_signature,
 
-                email: user.email,
+        email: user.email,
 
-                plan: planName,
-              }
-            )
+        plan: plan.name,
+      }
+    )
 
-            alert(
-              'Payment Successful & Verified'
-            )
+    // UPDATE LOCAL USER
 
-          } catch (error) {
+    const updatedUser = {
+      ...user,
+      subscriptionStatus: 'Active',
+      subscriptionPlan: plan.name,
+    }
 
-            console.log(error)
+    localStorage.setItem(
+      'user',
+      JSON.stringify(updatedUser)
+    )
 
-            alert(
-              'Verification Failed'
-            )
-          }
-        },
+    alert('Payment Successful')
+
+    window.location.href =
+      '/dashboard'
+
+  } catch (error) {
+
+    console.log(error)
+
+    alert('Payment Verification Failed')
+  }
+},
 
         theme: {
           color: '#2563eb',
