@@ -9,6 +9,8 @@ import ProtectedRoute from './routes/ProtectedRoute'
 import Plans from './pages/Plans'
 import BillingHistory from './pages/BillingHistory'
 import AdminDashboard from './pages/AdminDashboard'
+import ForgotPassword from './pages/ForgotPassword'
+import ResetPassword from './pages/ResetPassword'
 
 function App() {
 
@@ -35,7 +37,15 @@ function App() {
           path='/login'
           element={<Login />}
         />
+        <Route
+  path="/forgot-password"
+  element={<ForgotPassword />}
+/>
 
+<Route
+  path="/reset-password"
+  element={<ResetPassword />}
+/>
         <Route
           path='/register'
           element={<Register />}

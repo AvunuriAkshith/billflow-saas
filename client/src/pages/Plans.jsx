@@ -117,7 +117,7 @@ const Plans = () => {
         { amount }
       )
 
-      const order = response.data.order
+      const order = response.data
 
       const options = {
 

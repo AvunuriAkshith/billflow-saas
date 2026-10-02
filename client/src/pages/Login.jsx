@@ -72,42 +72,7 @@ const Login = () => {
       setLoading(false)
     }
   }
-const handleForgotPassword = async () => {
 
-  const email = prompt(
-    'Enter your email'
-  )
-
-  const newPassword = prompt(
-    'Enter new password'
-  )
-
-  if (!email || !newPassword) {
-    return
-  }
-
-  try {
-
-    const response = await API.post(
-      '/auth/forgot-password',
-      {
-        email,
-        new_password: newPassword,
-      }
-    )
-
-    alert(response.data.message)
-
-  } catch (error) {
-
-    console.log(error)
-
-    alert(
-      error.response?.data?.detail ||
-      'Password reset failed'
-    )
-  }
-}
   return (
 
     <div className="min-h-screen bg-gradient-to-br from-blue-100 via-white to-purple-100 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 flex items-center justify-center px-6 transition">
@@ -233,13 +198,12 @@ const handleForgotPassword = async () => {
 
               <div className="flex justify-end mb-8">
 
-                <button
-  type="button"
-  onClick={handleForgotPassword}
+                <Link
+  to="/forgot-password"
   className="text-blue-600 hover:underline"
 >
   Forgot Password?
-</button>
+</Link>
 
               </div>
 
@@ -256,7 +220,10 @@ const handleForgotPassword = async () => {
                   : 'Login'}
 
               </button>
-
+                   <Link
+    to="/forgot-password"
+    className="text-blue-600 hover:underline"
+  ></Link>
             </form>
 
             {/* Footer */}
