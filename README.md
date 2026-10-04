@@ -1,252 +1,146 @@
-# 🚀 BillFlow — Subscription SaaS Billing Platform
+# 🚀 BillFlow — Full-Stack SaaS Subscription Billing Platform
 
->Full-stack SaaS subscription billing platform with Razorpay payments, JWT authentication, PDF invoices, email notifications, subscription management, billing history, and admin analytics.
+> A modern full-stack SaaS billing platform for managing subscriptions, Razorpay payments, invoices, billing history, transactional emails, notifications, and admin analytics.
+
+<p align="center">
+  <a href="https://billflow-saas-ecru.vercel.app/">
+    <img src="https://img.shields.io/badge/Live%20Demo-Vercel-black?style=for-the-badge&logo=vercel" />
+  </a>
+  <a href="https://billflow-saas-rm1h.onrender.com/api">
+    <img src="https://img.shields.io/badge/Backend%20API-Render-46E3B7?style=for-the-badge&logo=render&logoColor=black" />
+  </a>
+  <a href="https://github.com/AvunuriAkshith/billflow-saas">
+    <img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github" />
+  </a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/React-Vite-61DAFB?style=flat-square&logo=react&logoColor=black" />
+  <img src="https://img.shields.io/badge/FastAPI-Python-009688?style=flat-square&logo=fastapi&logoColor=white" />
+  <img src="https://img.shields.io/badge/MongoDB-Atlas-47A248?style=flat-square&logo=mongodb&logoColor=white" />
+  <img src="https://img.shields.io/badge/Razorpay-Payments-3395FF?style=flat-square" />
+  <img src="https://img.shields.io/badge/TailwindCSS-38B2AC?style=flat-square&logo=tailwindcss&logoColor=white" />
+  <img src="https://img.shields.io/badge/Resend-Email-000000?style=flat-square" />
+</p>
 
 ---
 
 # 🌐 Live Demo
 
-## 🔗 Frontend
-```text
-https://billflow-saas-ecru.vercel.app/
-```
+### 🎨 Frontend
 
-## 🔗 Backend API
-```text
-ttps://billflow-saas-rm1h.onrender.com/api
-```
+🔗 **https://billflow-saas-ecru.vercel.app/**
+
+### ⚙️ Backend API
+
+🔗 **https://billflow-saas-rm1h.onrender.com/api**
 
 ---
 
-# ✨ Features
+# 📌 About The Project
 
-## 🔐 Authentication System
+**BillFlow** is a full-stack SaaS subscription billing platform designed to simulate a production-style billing workflow for subscription-based applications.
+
+The platform brings together customer authentication, subscription management, Razorpay payments, billing records, invoice generation, transactional emails, in-app notifications, and administrative analytics into one application.
+
+### BillFlow provides:
+
+- Secure user authentication
+- Subscription plan management
+- Razorpay payment processing
+- Secure payment signature verification
+- Subscription lifecycle management
+- Billing history
+- Professional PDF invoice generation
+- Transactional email notifications
+- In-app notification center
+- Secure password reset workflow
+- Admin analytics dashboard
+- Responsive modern SaaS UI
+- Production deployment using Vercel and Render
+
+---
+
+# 🎯 Problem Statement
+
+Subscription-based applications require several independent systems to handle:
+
+- Customer accounts
+- Authentication
+- Subscription plans
+- Payment processing
+- Billing records
+- Invoice generation
+- Payment notifications
+- Administrative analytics
+
+BillFlow combines these workflows into a single full-stack application, providing a centralized billing experience for both customers and administrators.
+
+---
+
+# ✨ Key Features
+
+## 🔐 Authentication & Account Management
+
 - User Registration
 - User Login
 - JWT Authentication
-- Forgot Password
 - Protected Routes
 - Role-Based Access Control
+- Password Reset
+- Secure token-based password reset workflow
+- Password hashing using bcrypt
+- Authentication state persistence
 
 ---
 
-## 💳 Subscription & Billing
-- Free / Pro / Enterprise Plans
-- Razorpay Payment Integration
-- Secure Payment Verification
-- Billing History
-- Invoice Generation & Download
+## 💳 Subscription Plans
+
+BillFlow currently supports three subscription plans:
+
+| Plan | Price | Duration |
+|------|------:|---------:|
+| 🆓 Free | ₹0 | Free |
+| ⭐ Pro | ₹499 | 30 Days |
+| 🚀 Enterprise | ₹1,999 | 30 Days |
+
+Users can:
+
+- View available subscription plans
+- Select a plan
+- Upgrade their subscription
+- View current subscription
+- Track subscription status
+- View subscription start date
+- View subscription expiry date
 
 ---
 
-## 📊 User Dashboard
-- Current Subscription Plan
-- Billing History
-- Upgrade Plan
-- Dark / Light Mode
-- Modern SaaS UI
+# 💰 Razorpay Payment Integration
 
----
+BillFlow integrates **Razorpay** for secure payment processing.
 
-## 🛠️ Admin Dashboard
-- Total Revenue Analytics
-- Total Users Tracking
-- Active Paid Users
-- Interactive Analytics Cards
-- Revenue Charts using Recharts
-- System Health Monitoring
-
----
-
-# 🧠 Tech Stack
-
-## 🎨 Frontend
-```text
-React.js
-Vite
-Tailwind CSS
-Recharts
-Axios
-React Router DOM
-```
-
-## ⚙️ Backend
-```text
-FastAPI
-MongoDB Atlas
-PyMongo
-JWT Authentication
-Razorpay API
-ReportLab
-```
-
-## ☁️ Deployment
-```text
-Frontend  → Vercel
-Backend   → Render
-Database  → MongoDB Atlas
-```
-
----
-
-# 📸 Screenshots
-
-## 🖥️ Dashboard
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/5b97f2a8-866a-4e67-9f1f-5a5911595fd8" />
-
-
-## 📈 Admin Analytics
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/2934f94e-697f-4a60-a17d-dbbe123e37b7" />
-
-
-## 💳 Billing History
-<img width="1919" height="1077" alt="image" src="https://github.com/user-attachments/assets/13ceeb2b-39f7-4b26-adf1-5078bc01fe29" />
-
-
----
-
-# ⚙️ Installation & Setup
-
-# 1️⃣ Clone Repository
-
-```bash
-git clone https://github.com/yourusername/billflow-saas.git
-
-cd billflow-saas
-```
-
----
-
-# 🚀 Frontend Setup
-
-```bash
-cd client
-
-npm install
-
-npm run dev
-```
-
-## Frontend Runs On
-```text
-http://localhost:5173
-```
-
----
-
-# 🚀 Backend Setup
-
-```bash
-cd server
-
-python -m venv venv
-
-venv\Scripts\activate
-
-pip install -r requirements.txt
-
-uvicorn app.main:app --reload
-```
-
-## Backend Runs On
-```text
-http://127.0.0.1:8000
-```
-
----
-
-# 🔑 Environment Variables
-
-Create `.env` inside `server`
-
-```env
-MONGO_URI=your_mongodb_atlas_url
-
-JWT_SECRET=your_jwt_secret
-
-RAZORPAY_KEY_ID=your_razorpay_key
-
-RAZORPAY_KEY_SECRET=your_razorpay_secret
-```
-
----
-
-# 💳 Razorpay Test Payment
-
-## 🧪 Test Card
+### Payment Workflow
 
 ```text
-Card Number : 4111 1111 1111 1111
-Expiry Date : Any Future Date
-CVV         : Any 3 Digits
-OTP         : 1234
-```
-
----
-
-# 📂 Project Structure
-
-```text
-billflow-saas/
-│
-├── client/
-│   ├── src/
-│   ├── pages/
-│   ├── components/
-│   ├── routes/
-│   └── services/
-│
-├── server/
-│   ├── app/
-│   ├── routes/
-│   ├── models/
-│   ├── database/
-│   └── utils/
-│
-└── README.md
-```
-
----
-
-# 🔒 Security Features
-
-```text
-✔ JWT Authentication
-✔ Protected Routes
-✔ Admin Authorization
-✔ Password Hashing using Bcrypt
-✔ Secure Razorpay Payment Verification
-```
-
----
-
-# 📈 Future Enhancements
-
-- Email OTP Verification
-- Stripe Integration
-- Subscription Expiry Reminders
-- Multi-Tenant SaaS Support
-- AI-Based Revenue Analytics
-- Team Management System
-
----
-
-# 👨‍💻 Author
-
-## Akshith Avunuri
-
-### 🌐 GitHub
-```text
-https://github.com/AvunuriAkshith
-```
-
-### 💼 LinkedIn
-```text
-https://www.linkedin.com/in/avunuriakshith
-```
-
----
-
-# ⭐ Support
-
-If you like this project, give it a ⭐ on GitHub and support the project 🚀
+User Selects Plan
+        ↓
+Create Razorpay Order
+        ↓
+Open Razorpay Checkout
+        ↓
+Complete Payment
+        ↓
+Receive Payment ID + Order ID + Signature
+        ↓
+Verify Signature on Backend
+        ↓
+Store Payment in MongoDB
+        ↓
+Activate Subscription
+        ↓
+Generate PDF Invoice
+        ↓
+Send Payment / Invoice Email
+        ↓
+Create In-App Notification
