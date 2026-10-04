@@ -36,10 +36,10 @@ const BillingHistory = () => {
     try {
 
       const response = await API.get(
-        `/payment/billing-history/${user.email}`
-      )
+  `/payment/history/${encodeURIComponent(user.email)}`
+)
 
-      setPayments(response.data.payments)
+setPayments(response.data)
 
     } catch (error) {
 
@@ -252,7 +252,7 @@ const BillingHistory = () => {
                     <td className="p-4">
 
                       <a
-                        href={`https://billflow-saas-rm1h.onrender.com/api/payment/invoice/${payment.payment_id}`}
+                       href={`https://billflow-saas-rm1h.onrender.com/api/payment/invoice/${payment.payment_id}`}
                         target="_blank"
                         rel="noreferrer"
                         className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
