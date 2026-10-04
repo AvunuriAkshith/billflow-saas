@@ -1,6 +1,6 @@
 # 🚀 BillFlow — Subscription SaaS Billing Platform
 
->BillFlow is a modern full-stack SaaS Billing & Subscription Management Platform built using React, FastAPI, MongoDB, and Razorpay. It enables users to purchase subscription plans, manage invoices, track billing history, and provides an interactive admin analytics dashboard.
+>Full-stack SaaS subscription billing platform with Razorpay payments, JWT authentication, PDF invoices, email notifications, subscription management, billing history, and admin analytics.
 
 ---
 
